@@ -57,7 +57,6 @@ def index(request):
     postin = posts.copy()
     postin.reverse()
     context = {'posts': postin}
-    print(context)
     return render(request, 'blog/index.html', context)
 
 
