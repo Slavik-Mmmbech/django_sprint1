@@ -57,11 +57,10 @@ def index(request):
     postin = posts.copy()
     postin.reverse()
     context = {'posts': postin}
-    print(context)
     return render(request, 'blog/index.html', context)
 
 
-def post_detail(request, id):
+def post_detail(request, pk):
     """Отображает детальную страницу конкретного блога.
 
     Args:
@@ -73,13 +72,13 @@ def post_detail(request, id):
         страница с ошибкой.
     """
     for post in posts:
-        if post['id'] == id:
-            context = {'real': True, 'post': post}
+        if post['id'] == pk:
+            context = {'existing': True, 'post': post}
             return render(request, 'blog/detail.html', context)
-    return render(request, 'blog/detail.html', {'real': False})
+    return render(request, 'blog/detail.html', {'existing': False})
 
 
-def category_posts(request, category_slug):
+def category_posts(request, slug):
     """Отображает все посты определенной категории.
 
     Args:
@@ -89,5 +88,5 @@ def category_posts(request, category_slug):
     Returns:
         HttpResponse: Страница с постами выбранной категории.
     """
-    context = {'category': category_slug}
+    context = {'category': slug}
     return render(request, 'blog/category.html', context)
