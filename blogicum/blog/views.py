@@ -90,4 +90,3 @@ def category_posts(request, slug):
     """
     context = {'category': slug}
     return render(request, 'blog/category.html', context)
-    
